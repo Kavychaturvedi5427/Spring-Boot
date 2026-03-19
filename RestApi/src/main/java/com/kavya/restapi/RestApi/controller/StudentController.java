@@ -22,13 +22,14 @@ public class StudentController {
 
     private final StudentServices services;
 
-    @GetMapping("/")
+    @GetMapping("/students")
     @ResponseBody
     public ResponseEntity<List<Student>> getAllStudents() {
         return ResponseEntity.status(HttpStatus.OK).body(services.getAllStudents());
     }
 
-    @PostMapping("/add")
+    // @PostMapping("/students/add")    here we're using post mapping which means we're already adding a new student so using add in the url is not a good practice..
+    @PostMapping("/students")
     public ResponseEntity<StudentDTO> addNewStudents(@RequestBody StudentDTO stuDto) {
         return ResponseEntity.status(HttpStatus.CREATED).body(services.addStudent(stuDto));
     }
