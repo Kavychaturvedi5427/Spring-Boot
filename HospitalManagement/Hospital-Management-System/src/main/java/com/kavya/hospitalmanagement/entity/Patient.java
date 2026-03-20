@@ -2,7 +2,13 @@ package com.kavya.hospitalmanagement.entity;
 
 import java.time.LocalDateTime;
 
+import org.hibernate.OrderingMode;
+
+import com.kavya.hospitalmanagement.type.BloodGroupType;
+
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import lombok.Getter;
@@ -23,6 +29,8 @@ public class Patient {
     private String address;
     private LocalDateTime dateOfBirth;
     private String gender;
+    @Enumerated(EnumType.STRING)        // by defualt it will use string...
+    private BloodGroupType bloodgroup;
 
     @Override
     public String toString() {
