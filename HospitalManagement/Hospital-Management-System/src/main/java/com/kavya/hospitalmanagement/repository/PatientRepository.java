@@ -6,11 +6,14 @@ import java.util.List;
 
 import org.springframework.cglib.core.Local;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import com.kavya.hospitalmanagement.entity.Patient;
+
+import jakarta.transaction.Transactional;
 
 @Repository
 public interface PatientRepository extends JpaRepository<Patient, Long> {
@@ -41,6 +44,16 @@ public interface PatientRepository extends JpaRepository<Patient, Long> {
     @Query("select p from Patient p where p.dateOfBirth > :dateOfBirth")
     List<Patient> findByBornAfter(@Param("dateOfBirth") LocalDateTime dateOfBirth);
 
+    // Native Query
+    @Query(value = "select * from patient", nativeQuery = true)
+    List<Patient> findAllPatient();
+
+    @Transactional
+    @Modifying
+    @Query("Update Patient p set p.name = :name where p.id = :id")
+    int updatePatientByName(@Param("name") String name, @Param("id") Long id);
+
+    
 
 
 }
