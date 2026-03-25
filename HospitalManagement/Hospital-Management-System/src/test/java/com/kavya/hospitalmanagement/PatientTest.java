@@ -1,7 +1,5 @@
 package com.kavya.hospitalmanagement;
 
-import java.security.PKCS12Attribute;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -31,6 +29,9 @@ public class PatientTest {
         }
     }
 
+    /**
+     * 
+     */
     @Test
     public void testTransactionalMethod() {
         // when we're running this method this is calling the getPatientById method in
@@ -54,6 +55,16 @@ public class PatientTest {
         List<Patient> p2 = patientRepository.findByBornAfter(LocalDateTime.of(1995, 1, 1, 0, 0));
         System.out.println(p2);
 
+        List<Patient> allPatient = patientRepository.findAllPatient();
+        for(Patient p : allPatient){
+            System.out.println(p);
+        }
+        
+        
+        int affected= patientRepository.updatePatientByName("Naman", 1L);
+        System.out.println(affected);
+        
+        
 
     }
 
