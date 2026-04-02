@@ -1,5 +1,7 @@
 package com.kavya.hospitalmanagement.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +16,10 @@ import lombok.RequiredArgsConstructor;
 public class PatientService {
     @Autowired
     private PatientRepository patientRepository;
+
+    public List<Patient> getAllPatients() {
+        return patientRepository.findAll();
+    }
 
     @Transactional
     // if any error arises then all the changes will be rolled back to maintain the
