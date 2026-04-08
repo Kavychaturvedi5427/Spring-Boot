@@ -28,6 +28,7 @@ public class AuthUtils {
     public String generateToken(User user) {
         // this method will generate the jwt token for the user and return it to the client...
         return Jwts.builder()
+                    // payload 
                     .subject(user.getUsername())
                     .claim("userId", user.getId().toString())
                     .issuedAt(new Date())
